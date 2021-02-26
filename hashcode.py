@@ -1,9 +1,10 @@
-with open("a.txt") as f:
+with open("c.txt") as f:
         lines = f.readlines()
 
 D, I, S, V, F = list(map(int, lines[0].split()))
 
 graph_elements = dict()
+graph_elements_out = dict()
 street = dict()
 path = dict(); counter = 0; indeg = []
 time = 0
@@ -18,7 +19,10 @@ for i in range(1, S + 1):
     if E not in list(graph_elements.keys()):
         graph_elements[E] = [];
     indeg[E] +=1;
-    graph_elements[E].append([B, street_name, L]) 
+    graph_elements[E].append([B, street_name, L])
+    if B not in list(graph_elements_out.keys()):
+        graph_elements_out[B] = [];
+    graph_elements_out[B].append([E, street_name, L])
 
 for i in range(S + 1, S + V + 1):
     input = lines[i].split()
@@ -50,24 +54,26 @@ schedule =dict() # its a list of pairs ( streetname, duration), both strings so 
 for i in range(I):
     schedule[i]=[]
     for z in range(indeg[i]):
-        schedule[i].append([graph_elements[i][0][1], str(1)])
+        schedule[i].append([graph_elements[i][z][1], str(1)])
 
 print(schedule)
     
 opfile = open("Schedule.txt","w"); s = "\n";
+dealtIntex = I
 opfile.write(str(dealtIntex))
 opfile.write(s)
 for z in range(I):
     opfile.write(str(z)) #Name of vertex
     opfile.write(s) #newline
     opfile.write(str(indeg[z])) #It's indeg for now.. but it has to be indeg so tht light turns green for them
-    opfile.write(s)
-    opfile.write(schedule[i][0][0]) #edge or street name
-    opfile.write(" ")
-    opfile.write(schedule[i][0][1]) #duration
-    opfile.write(s)
+    opfile.write(s)                         #loop to consider multiple incoming edges.
+    for w in range(indeg[z]):
+        opfile.write(schedule[z][w][0]) #edge or street name
+        opfile.write(" ")
+        opfile.write(schedule[z][0][1]) #duration
+        opfile.write(s)
 
-opfile.close
+opfile.close()
 
 
 
