@@ -11,9 +11,9 @@ def solve(filename):
         B, E, street_name, L = lines[i].split()
         B, E, L = int(B), int(E), int(L)
 
-        if B not in list(graph_elements.keys()):
-            graph_elements[B] = []
-        graph_elements[B].append([E, street_name, L])
+        if E not in list(graph_elements.keys()):
+            graph_elements[E] = []
+        graph_elements[E].append([B, street_name, L,0])
     
         print(graph_elements)
 
