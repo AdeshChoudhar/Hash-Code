@@ -29,16 +29,12 @@ for i in range(S + 1, S + V + 1):
     P, streets_required = input[0], input[1:]; P = int(P)
     path[counter] = [P, streets_required]
     counter +=1
-   
-print(street)
-print(graph_elements)
-print(path)
+
 # vertex or intersections attributes. 0: 0 is the red color, default. green = 1. [] is the queue. 
 intex = dict()
 for i in range(I):
     intex[i] = []
     intex[i].append([0,[], indeg[i]])
-print(intex)
  
 car = dict() #finding paths.
 for j in range(counter):
@@ -47,7 +43,6 @@ for j in range(counter):
         car[j].append( street[path[j][1][q]][0] )
     car[j].append(street[path[j][1][q-1]][1] )
     intex[car[j][0]][0][1].append([[time],[j]]) #timestamp of car j when its at our vertex/intex.
-print(car)
 dealtIntex = 0 #counter to check how many intex's schedule made.
 
 schedule =dict() # its a list of pairs ( streetname, duration), both strings so I can write it to OP file.
@@ -55,10 +50,8 @@ for i in range(I):
     schedule[i]=[]
     for z in range(indeg[i]):
         schedule[i].append([graph_elements[i][z][1], str(1)])
-
-print(schedule)
     
-opfile = open("Schedule.txt","w"); s = "\n";
+opfile = open("schedule.txt","w"); s = "\n";
 dealtIntex = I
 opfile.write(str(dealtIntex))
 opfile.write(s)
@@ -72,5 +65,4 @@ for z in range(I):
         opfile.write(" ")
         opfile.write(schedule[z][0][1]) #duration
         opfile.write(s)
-
 opfile.close()
