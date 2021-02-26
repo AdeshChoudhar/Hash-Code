@@ -17,11 +17,11 @@ for i in range(1, S + 1):
     street[street_name] = [B,E]
 
     if E not in list(graph_elements.keys()):
-        graph_elements[E] = [];
-    indeg[E] +=1;
+        graph_elements[E] = []
+    indeg[E] +=1
     graph_elements[E].append([B, street_name, L])
     if B not in list(graph_elements_out.keys()):
-        graph_elements_out[B] = [];
+        graph_elements_out[B] = []
     graph_elements_out[B].append([E, street_name, L])
 
 for i in range(S + 1, S + V + 1):
@@ -74,9 +74,3 @@ for z in range(I):
         opfile.write(s)
 
 opfile.close()
-
-
-
-
-
-
