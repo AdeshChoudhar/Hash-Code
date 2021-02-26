@@ -1,6 +1,6 @@
 import graph
 
-def input(filename):
+def solve(filename):
     with open(filename) as f:
         lines = f.readlines()
 
@@ -22,9 +22,6 @@ def input(filename):
         P, streets_required = input[0], input[1:]
     
 
-def solve():
-
-
 
 def output():
     f = open("output.txt","w")
@@ -33,6 +30,5 @@ def output():
 
 
 if __name__ == "__main__":
-    input("a.txt")
-    # solve()
+    solve("a.txt")
     output()
