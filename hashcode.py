@@ -1,4 +1,4 @@
-with open("c.txt") as f:
+with open("f.txt") as f:
         lines = f.readlines()
 
 D, I, S, V, F = list(map(int, lines[0].split()))
